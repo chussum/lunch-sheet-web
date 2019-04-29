@@ -49,7 +49,7 @@ export class LunchRepository {
       const rows: any = await getRows({
         offset: params.offset || 0,
         limit: params.limit,
-        orderby: params.orderBy || SHEET_PRIMARY_KEY,
+        orderby: params.orderBy,
         reverse: params.reverse,
         query: params.query
       });

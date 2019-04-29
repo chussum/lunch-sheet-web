@@ -7,8 +7,8 @@ export class NotFoundHandlerMiddleware implements ExpressMiddlewareInterface {
   private log = new Logger(__dirname);
 
   public use(req: Request, res: Response, next?: NextFunction): void {
-    this.log.info('NotFoundHandlerMiddleware reached, ending response.');
     if (!res.headersSent) {
+      this.log.info('NotFoundHandlerMiddleware reached, ending response.');
       res.status(404);
       res.json({
         name: 'Not Found',

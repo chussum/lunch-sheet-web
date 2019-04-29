@@ -2,6 +2,7 @@ import { JsonController, CurrentUser, Render, Param, Body, Get, Post, Put, Delet
 import { User } from 'models/User';
 import { LunchService } from 'services/LunchService';
 import { env } from 'env';
+import { Lunch } from 'types/Lunch';
 
 @JsonController()
 export class IndexController {
@@ -12,9 +13,12 @@ export class IndexController {
   async getIndex(@CurrentUser() user?: User) {
     const sheetUrl = `https://docs.google.com/spreadsheets/d/${env.google.sheetId}`;
     const lunches = await this.lunchService.findAll({
-      offset: 0,
-      orderBy: 'like',
-      reverse: true
+      offset: 0
+    });
+    lunches.sort((a: Lunch, b: Lunch) => {
+      const aVal = a.like + a.dislike;
+      const bVal = b.like + b.dislike;
+      return bVal - aVal;
     });
     return {
       user,
