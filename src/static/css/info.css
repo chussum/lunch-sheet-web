@@ -22,10 +22,10 @@
 .info .btn-comments {
   flex: 1;
   width: 100px;
+  text-align: center;
 }
 
 .info .btn-like-dislike i,
 .info .btn-comments i {
-  text-indent: -24px;
   width: 24px;
 }
