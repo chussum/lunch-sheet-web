@@ -4,6 +4,7 @@ import expressSession from 'express-session';
 import expressMysqlSession from 'express-mysql-session';
 import bodyParser from 'body-parser';
 import passport from 'passport';
+import expressStatusMonitor from 'express-status-monitor';
 import { useExpressServer } from 'routing-controllers';
 import { authorizationChecker } from 'auth/authorizationChecker';
 import { currentUserChecker } from 'auth/currentUserChecker';
@@ -15,6 +16,13 @@ const server = express();
 server.set('views', `${__dirname}/views`);
 server.set('view engine', 'ejs');
 server.engine('html', require('ejs').renderFile);
+
+// express monitor
+server.use(
+  expressStatusMonitor({
+    title: 'Server Status'
+  })
+);
 
 // Cookie Parser
 server.use(cookieParser());
