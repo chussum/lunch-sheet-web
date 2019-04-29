@@ -1,0 +1,9 @@
+{
+  "delay": "0",
+  "execMap": {
+    "ts": "TS_NODE_PROJECT=tsconfig.json TS_NODE_FILES=true node -r ts-node/register -r tsconfig-paths/register"
+  },
+  "events": {
+    "start": "tslint -c ./tslint.json -t stylish 'src/**/*.ts' --project tsconfig.json"
+  }
+}

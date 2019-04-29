@@ -1,0 +1,120 @@
+.comment-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.comment-list li {
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #efefef;
+}
+.comment-list li .left {
+  display: flex;
+  align-items: center;
+}
+.comment-list li .right {
+  display: flex;
+  align-items: center;
+}
+.comment-list li .avatar {
+  width: 64px;
+  height: 64px;
+}
+.comment-list li .name {
+  margin: 0 16px 0 0;
+  font-weight: 500;
+}
+.comment-list li .comment {
+  margin: 0;
+  font-size: 16px;
+  text-align: left;
+}
+.comment-list li .create-date {
+  margin: 0 0 0 10px;
+  font-size: 12px;
+  color: #888;
+}
+.comment-list li .btn-remove {
+  margin: 0 0 0 16px;
+  padding: 4px 10px;
+  border-radius: 2px;
+  border: 1px solid #000;
+  cursor: pointer;
+  outline: none;
+}
+.comment-list li.center {
+  padding: 0;
+  justify-content: center;
+}
+.comment-list li.loading {
+  padding: 0;
+  justify-content: center;
+}
+.comment-list li.loading img {
+  width: 200px;
+}
+.comment-form {
+  display: flex;
+  text-align: center;
+  margin: 20px auto 40px;
+  width: 800px;
+}
+.comment-form .avatar {
+  width: 64px;
+  height: 64px;
+}
+.comment-form .content {
+  flex: 1;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.comment-form .comment-btn-disabled {
+  margin-left: -1px;
+  width: 100px;
+  border-radius: 0;
+  background: #d2d2d2;
+  border-color: #ddd;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+}
+.comment-form .comment-btn-submit {
+  margin-left: -1px;
+  width: 100px;
+  transition: 0.1s;
+  border-radius: 0;
+  background: #747c8a;
+  border-color: #747c8a;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+}
+.comment-form .comment-btn-submit:focus {
+  background-color: #636b79;
+  border: 1px solid #636b79;
+}
+.comment-form input,
+.comment-form textarea {
+  font-size: 16px;
+  border: 0;
+  outline: 0;
+  padding: 16px;
+  border-radius: 2px;
+  display: block;
+  width: 100%;
+  border: 1px solid #ddd;
+  resize: none;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus {
+  border: 1px solid #000;
+}
+
+.comment-form textarea {
+  height: 126px;
+}

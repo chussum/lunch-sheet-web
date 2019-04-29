@@ -1,0 +1,18 @@
+{
+  "apps": [
+    {
+      "name": "lunch-sheet-web",
+      "script": "./src/index.ts",
+      "instances": 1,
+      "error_file": "./logs/lunch-sheet-web-err.log",
+      "out_file": "./logs/lunch-sheet-web-out.log",
+      "pid_file": "./logs/lunch-sheet-web.pid",
+      "env": {
+        "NODE_PATH": "./src",
+        "NODE_ENV": "prod",
+        "TS_NODE_PROJECT": "tsconfig.json",
+        "TS_NODE_FILES": "true"
+      }
+    }
+  ]
+}

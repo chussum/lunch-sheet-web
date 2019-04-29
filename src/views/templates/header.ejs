@@ -1,0 +1,28 @@
+<header>
+  <h1>
+    점심 장소 ;) <% if (sheetUrl) { %>
+    <a href="<%=sheetUrl%>" target="_blank"><img class="icon-popup" src="/img/open-popup.png" alt="google sheet"/></a>
+    <% } %>
+  </h1>
+  <div class="right">
+    <% if (user) { %>
+    <img class="avatar" src="<%=user.profileImage%>" alt="<%=user.email%>" />
+    <span class="user-email"><%=user.email%></span>
+    <a class="btn-logout" href="/logout">로그아웃</a>
+    <% } else { %>
+    <a class="btn-login" href="/login">로그인</a>
+    <% } %>
+  </div>
+</header>
+
+<script>
+  (function() {
+    $(document).on('scroll', function() {
+      if ($(document).scrollTop() > 100) {
+        $('header').addClass('shrink');
+      } else {
+        $('header').removeClass('shrink');
+      }
+    });
+  })();
+</script>
