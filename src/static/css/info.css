@@ -11,17 +11,16 @@
   padding: 10px;
   display: flex;
   align-items: center;
+  max-width: 300px;
 }
 
 .info div {
-  max-width: 340px;
+  display: inline-block;
   margin: 0 6px;
 }
 
 .info .btn-like-dislike,
 .info .btn-comments {
-  flex: 1;
-  width: 60px;
   text-align: center;
 }
 
