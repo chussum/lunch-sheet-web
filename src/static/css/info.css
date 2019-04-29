@@ -16,3 +16,8 @@
 .info div {
   margin: 0 6px;
 }
+
+.info .btn-like-dislike,
+.info .btn-comments {
+  width: 100px;
+}
