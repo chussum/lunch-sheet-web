@@ -78,7 +78,7 @@
   width: 100px;
   border-radius: 0;
   background: #d2d2d2;
-  border-color: #ddd;
+  border: 1px solid #ddd;
   color: #fff;
   font-size: 16px;
   outline: none;
@@ -90,7 +90,7 @@
   transition: 0.1s;
   border-radius: 0;
   background: #747c8a;
-  border-color: #747c8a;
+  border: 1px solid #747c8a;
   color: #fff;
   font-size: 16px;
   cursor: pointer;

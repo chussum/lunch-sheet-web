@@ -14,10 +14,12 @@
 }
 
 .info div {
+  max-width: 340px;
   margin: 0 6px;
 }
 
 .info .btn-like-dislike,
 .info .btn-comments {
+  flex: 1;
   width: 100px;
 }
