@@ -65,7 +65,7 @@ header h1 {
   text-indent: 40px;
   font-weight: bold;
 }
-header h1:hover {
+header h1 a:hover {
   font-weight: bold;
   color: #000;
 }
