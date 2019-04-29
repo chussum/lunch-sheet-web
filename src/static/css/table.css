@@ -10,7 +10,8 @@ table {
 
 table thead th {
   position: sticky;
-  top: 126px;
+  top: 90px;
+  padding: 16px 1.6rem !important;
   background: #fff;
 }
 

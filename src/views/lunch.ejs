@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <% include ./templates/head %>
+  </head>
+  <body>
+    <% include ./templates/header %>
+
+    <section class="container">
+      <table>
+        <colgroup>
+          <col style="width: 240px" />
+          <col />
+        </colgroup>
+        <tbody>
+          <% posts.forEach(function(post) { %>
+          <tr>
+            <td><img class="lunch-image" src="<%=post.thumbnail%>" alt="썸네일" /></td>
+            <td><a href="<%=post.url%>" target="_blank"><%= post.title %></a></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </section>
+
+    <% include ./templates/footer %>
+  </body>
+</html>

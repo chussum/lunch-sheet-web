@@ -4,6 +4,8 @@ import { LunchService } from 'services/LunchService';
 import { env } from 'env';
 import { Lunch } from 'types/Lunch';
 
+const SHEET_URL = `https://docs.google.com/spreadsheets/d/${env.google.sheetId}`;
+
 @JsonController()
 export class IndexController {
   constructor(private lunchService: LunchService) {}
@@ -11,7 +13,6 @@ export class IndexController {
   @Get('/')
   @Render('index.ejs')
   async getIndex(@CurrentUser() user?: User) {
-    const sheetUrl = `https://docs.google.com/spreadsheets/d/${env.google.sheetId}`;
     const lunches = await this.lunchService.findAll({
       offset: 0
     });
@@ -22,8 +23,27 @@ export class IndexController {
     });
     return {
       user,
-      sheetUrl,
+      sheetUrl: SHEET_URL,
       lunches
+    };
+  }
+
+  @Get('/lunch/:id')
+  @Render('lunch.ejs')
+  async getLunch(@Param('id') id: number, @CurrentUser() user?: User) {
+    const lunch = await this.lunchService.findById(id);
+    if (lunch) {
+      const posts = await this.lunchService.getRestaurantPostsAtNaver(`역삼 ${lunch.placeName}`, 10);
+      return {
+        user,
+        sheetUrl: SHEET_URL,
+        posts
+      };
+    }
+    return {
+      user,
+      sheetUrl: SHEET_URL,
+      posts: []
     };
   }
 }

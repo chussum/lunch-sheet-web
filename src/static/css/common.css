@@ -48,8 +48,8 @@ header {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  min-height: 126px;
-  padding: 60px 0;
+  min-height: 90px;
+  padding: 40px 0;
   background: #fff;
   border-bottom: 1px solid #e1e1e1;
   /* animation magic */
@@ -66,17 +66,21 @@ header h1 {
   font-weight: bold;
 }
 .container {
-  padding: 240px 16px 20px 16px;
+  padding: 190px 16px 20px 16px;
   width: 100%;
   margin: 0 auto;
 }
 .shrink {
-  padding: 20px 0;
+  padding: 0;
 }
 a {
   text-decoration: none;
   color: #333;
   outline: none;
+}
+a:hover {
+  color: #222;
+  font-weight: 500;
 }
 p {
   margin: 0 0 40px 0;
