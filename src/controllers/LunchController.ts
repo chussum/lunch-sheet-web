@@ -81,6 +81,22 @@ export class LunchController {
     };
   }
 
+  @Get('/lunches/:id/posts')
+  async getLunchPosts(@Param('id') id: number) {
+    const lunch = await this.lunchService.findById(id);
+    if (lunch) {
+      const posts = await this.lunchService.getRestaurantPostsAtNaver(`역삼 ${lunch.placeName}`, 10);
+      return {
+        success: true,
+        posts
+      };
+    }
+    return {
+      success: false,
+      posts: []
+    };
+  }
+
   @Patch('/lunches/:id/like')
   async like(@Param('id') id: number) {
     const res = await this.lunchService.like(id);
