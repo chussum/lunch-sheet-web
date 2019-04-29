@@ -65,6 +65,10 @@ header h1 {
   text-indent: 40px;
   font-weight: bold;
 }
+header h1:hover {
+  font-weight: bold;
+  color: #000;
+}
 .container {
   padding: 190px 16px 20px 16px;
   width: 100%;
