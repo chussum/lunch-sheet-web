@@ -37,7 +37,7 @@ export class Lunch implements LunchType {
       this.url = data.url;
       if (/https?:\/\/.+/.test(this.url)) {
         this.urlType = 'link';
-        if (/.jpg|.jpeg|.gif|.png/.test(this.url)) {
+        if (/.jpg|.jpeg|.gif|.png/i.test(this.url)) {
           this.urlType = 'image';
         }
       } else {
