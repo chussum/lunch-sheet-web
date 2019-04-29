@@ -36,12 +36,14 @@ export class IndexController {
       const posts = await this.lunchService.getRestaurantPostsAtNaver(`역삼 ${lunch.placeName}`, 10);
       return {
         user,
+        lunch,
         sheetUrl: SHEET_URL,
         posts
       };
     }
     return {
       user,
+      lunch: null,
       sheetUrl: SHEET_URL,
       posts: []
     };

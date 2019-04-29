@@ -1,0 +1,163 @@
+<script>
+  (function() {
+    var loggedUserId = '<%=user ? user.id : "" %>';
+    var $commentForm = $('#comment-form');
+    var $commentList = $('#comment-list');
+
+    function initComments(id) {
+      $commentForm[0].reset();
+      $commentForm.find('[name="id"]').val(id);
+      $commentList.html('<li class="loading"><img src="/img/loading.gif" alt="loading" /></li>');
+      $.ajax({
+        url: '/api/lunches/' + id + '/comments',
+        type: 'GET'
+      })
+        .done(function(data) {
+          if (data.success) {
+            const comments = _.map(data.comments, function(comment) {
+              var avatar = '<img class="avatar" src="' + comment.author.profileImage + '" alt="avatar" />';
+              var name = '<span class="name">' + comment.author.name + '</span>';
+              var content = '<p class="comment">' + comment.content.replace(/\n/, '<br>') + '</p>';
+              var createdAt =
+                '<span class="create-date">' +
+                dateFns.format(new Date(comment.createdAt), 'YYYY/MM/DD HH:mm:ss') +
+                '</span>';
+              var btnRemove = '';
+              if (+loggedUserId === comment.author.id) {
+                btnRemove =
+                  '<button class="btn-remove" type="button" data-lunch-id="' +
+                  id +
+                  '" data-comment-id="' +
+                  comment.id +
+                  '">삭제</button>';
+              }
+              var left = '<div class="left">' + avatar + name + content + '</div>';
+              var right = '<div class="right">' + createdAt + btnRemove + '</div>';
+              return '<li>' + left + right + '</li>';
+            }).join('');
+            $commentList.html(data.comments.length ? comments : '<li class="center">첫번째 댓글을 남겨주세요.</li>');
+            var $btnRemoveElements = $('.btn-remove');
+            $btnRemoveElements.unbind('click');
+            $btnRemoveElements.click(function(e) {
+              e.preventDefault();
+              if (!confirm('정말로 삭제하시겠습니까?')) {
+                return;
+              }
+              var $this = $(this);
+              var lunchId = $this.data('lunch-id');
+              var commentId = $this.data('comment-id');
+              var lunchCommentEl = $('#lunch-comment-' + lunchId);
+              var commentCount = +lunchCommentEl.text();
+              $.ajax({
+                url: '/api/lunches/' + lunchId + '/comments/' + commentId,
+                type: 'DELETE'
+              })
+                .done(function(data) {
+                  if (data.success) {
+                    initComments(lunchId);
+                    lunchCommentEl.text(commentCount - 1);
+                  } else {
+                    alert(data.message || '알 수 없는 오류로 삭제 실패');
+                  }
+                })
+                .fail(function() {
+                  alert('알 수 없는 오류로 삭제 실패');
+                });
+            });
+          }
+        })
+        .fail(function() {
+          $commentList.html('<li class="center">댓글을 읽어오는 중에 오류가 발생했습니다.</li>');
+        });
+    }
+
+    $('.comment-btn-submit').click(function(e) {
+      e.preventDefault();
+      var lunchId = $commentForm.find('[name="id"]').val();
+      var content = $commentForm.find('[name="content"]').val();
+      var lunchCommentEl = $('#lunch-comment-' + lunchId);
+      var commentCount = +lunchCommentEl.text();
+      $.ajax({
+        url: '/api/lunches/' + lunchId + '/comments',
+        type: 'POST',
+        data: {
+          content: content
+        }
+      })
+        .done(function(data) {
+          if (data.success) {
+            initComments(lunchId);
+            lunchCommentEl.text(commentCount + 1);
+          }
+        })
+        .fail(function() {
+          // fail
+        });
+    });
+
+    $('.btn-comments').click(function(e) {
+      e.preventDefault();
+
+      var $this = $(this);
+      var id = $this.data('lunch-id');
+      initComments(id);
+
+      $('#modal-container')
+        .removeAttr('class')
+        .addClass('one');
+      $('body').addClass('modal-active');
+    });
+
+    $('#modal-container').click(function() {
+      $(this).addClass('out');
+      $('body').removeClass('modal-active');
+    });
+
+    $('#modal-content').click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    });
+
+    $('.btn-like').click(function(e) {
+      e.preventDefault();
+      var $this = $(this);
+      var id = $this.data('lunch-id');
+      var lunchLikeEl = $('#lunch-like-' + id);
+      var like = +lunchLikeEl.text();
+      lunchLikeEl.text(like + 1);
+      $.ajax({
+        url: '/api/lunches/' + id + '/like',
+        type: 'PATCH'
+      })
+        .done(function(data) {
+          if (!data.success) {
+            lunchLikeEl.text(like);
+          }
+        })
+        .fail(function() {
+          lunchLikeEl.text(like);
+        });
+    });
+
+    $('.btn-dislike').click(function(e) {
+      e.preventDefault();
+      var $this = $(this);
+      var id = $this.data('lunch-id');
+      var lunchDisLikeEl = $('#lunch-dislike-' + id);
+      var dislike = +lunchDisLikeEl.text();
+      lunchDisLikeEl.text(dislike - 1);
+      $.ajax({
+        url: '/api/lunches/' + id + '/dislike',
+        type: 'PATCH'
+      })
+        .done(function(data) {
+          if (!data.success) {
+            lunchDisLikeEl.text(dislike);
+          }
+        })
+        .fail(function() {
+          lunchDisLikeEl.text(dislike);
+        });
+    });
+  })();
+</script>

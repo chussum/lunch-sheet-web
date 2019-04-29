@@ -4,15 +4,42 @@
     <% include ./templates/head %>
   </head>
   <body>
-    <% include ./templates/header %>
-
+    <% include ./templates/header %> <% if (lunch) { %>
     <section class="container">
+      <h1 class="lunch-title">
+        <%=lunch.placeName%>
+        <div class="info">
+          <div style="text-align: center">
+            <% if (lunch.id) { %>
+            <button type="button" class="btn-like btn-like-dislike" data-lunch-id="<%=lunch.id%>">
+              <i>👍🏻</i> <span id="lunch-like-<%=lunch.id%>"><%= lunch.like %></span>
+            </button>
+            <% } %>
+          </div>
+          <div style="text-align: center">
+            <% if (lunch.id) { %>
+            <button type="button" class="btn-dislike btn-like-dislike" data-lunch-id="<%=lunch.id%>">
+              <i>👎🏻</i> <span id="lunch-dislike-<%=lunch.id%>"><%= lunch.dislike %></span>
+            </button>
+            <% } %>
+          </div>
+          <div style="text-align: center">
+            <% if (lunch.id) { %>
+            <button type="button" class="btn-comments" data-lunch-id="<%=lunch.id%>">
+              <img src="/img/comment.png" alt="comments" />
+              <span id="lunch-comment-<%=lunch.id%>"><%=lunch.comments.length%></span>
+            </button>
+            <% } %>
+          </div>
+        </div>
+      </h1>
       <table>
         <colgroup>
           <col style="width: 240px" />
           <col />
         </colgroup>
         <tbody>
+          <tr></tr>
           <% posts.forEach(function(post) { %>
           <tr>
             <td><img class="lunch-image" src="<%=post.thumbnail%>" alt="썸네일" /></td>
@@ -23,6 +50,34 @@
       </table>
     </section>
 
-    <% include ./templates/footer %>
+    <div id="modal-container">
+        <div class="modal-background">
+          <div id="modal-content" class="modal">
+            <form id="comment-form">
+                <% if (user) { %>
+                  <div class="comment-form">
+                  <img class="avatar" src="<%=user.profileImage%>" alt="avatar" />
+                  <textarea name="content" class="content"></textarea>
+                  <input name="id" type="hidden" value="" />
+                  <button type="submit" class="comment-btn-submit">
+                    등록
+                  </button>
+                <% } else { %>
+                  <div class="comment-form">
+                  <img class="avatar" src="/img/blank.jpg" alt="avatar" />
+                  <textarea name="content" class="content" disabled>로그인 하시면 댓글을 달 수 있어요.</textarea>
+                  <input name="id" type="hidden" value="" />
+                  <button type="submit" class="comment-btn-disabled" disabled>
+                    등록
+                  </button>
+                <% } %>
+                </div>
+            </form>
+            <ul id="comment-list" class="comment-list"></ul>
+          </div>
+        </div>
+      </div>
+  
+    <% } %> <% include ./templates/footer %>
   </body>
 </html>
