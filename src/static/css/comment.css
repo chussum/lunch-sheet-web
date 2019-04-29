@@ -48,10 +48,12 @@
 .comment-list li.center {
   padding: 0;
   justify-content: center;
+  border-top: 0;
 }
 .comment-list li.loading {
   padding: 0;
   justify-content: center;
+  border-top: 0;
 }
 .comment-list li.loading img {
   width: 200px;
