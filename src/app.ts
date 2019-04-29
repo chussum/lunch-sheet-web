@@ -47,6 +47,15 @@ server.use(passport.initialize());
 server.use(passport.session());
 server.use(express.static(`${__dirname}/static`));
 
+server.get('/robots.txt', (req: express.Request, res: express.Response) => {
+  return res.send(
+    `
+User-agent: *
+Disallow: /
+`.trim()
+  );
+});
+
 server.get('/logout', (req: express.Request, res: express.Response) => {
   if (req.session) {
     return req.session.destroy(err => res.redirect('/'));
