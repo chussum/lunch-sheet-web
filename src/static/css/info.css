@@ -21,7 +21,7 @@
 .info .btn-like-dislike,
 .info .btn-comments {
   flex: 1;
-  width: 100px;
+  width: 60px;
   text-align: center;
 }
 
