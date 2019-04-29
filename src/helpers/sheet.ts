@@ -28,6 +28,7 @@ interface CellsSearchParams {
   'return-empty': boolean;
 }
 
+const CACHE_LIMIT_MS = 20 * 60 * 1000;
 const singleCoreCache = {};
 
 const getRowsWithCache = async params => {
@@ -57,7 +58,7 @@ export const getRows = (params: RowsSearchParams = {}, isForce = false) => {
   if (isForce || singleCoreCache[key] === undefined) {
     return getRowsWithCache(params);
   }
-  if (singleCoreCache[key].accessTime < Date.now() - 10 * 60 * 1000) {
+  if (singleCoreCache[key].accessTime < Date.now() - CACHE_LIMIT_MS) {
     return getRowsWithCache(params);
   }
   return singleCoreCache[key].rows;
