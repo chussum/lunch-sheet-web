@@ -37,6 +37,7 @@ table tbody tr td.text-center {
 }
 table tbody tr td.custom {
   padding-top: 35px;
+  padding-bottom: 35px;
   vertical-align: top;
 }
 table thead > tr > th {
