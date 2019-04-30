@@ -70,7 +70,7 @@ header h1 a:hover {
   color: #000;
 }
 header h1 .description {
-  margin: 0 0 0 4px;
+  margin: 0 0 0 10px;
   color: #888;
   font-size: 12px;
   font-weight: 400;
