@@ -33,6 +33,32 @@
           </div>
         </div>
       </h1>
+      <ul class="lunch-description">
+          <% if (lunch.recommend) { %>
+          <li>
+            <div class="title">추천 메뉴</div> <div class="description"><%=lunch.recommend%></div>
+          </li>
+          <% } %>
+          <% if (lunch.content) { %>
+          <li>
+            <div class="title">설명</div> <div class="description"><%=lunch.content%></div>
+          </li>
+          <% } %>
+          <% if (lunch.url) { %>
+          <li>
+            <div class="title">한마디 / 관련링크</div>
+            <div class="description">
+              <% if (lunch.urlType === 'link') { %>
+              <a class="lunch-link" href="<%= lunch.url %>" target="_blank">링크</a>
+              <% } else if (lunch.urlType === 'image') { %>
+              <a class="lunch-link" href="<%= lunch.url %>" target="_blank">
+                <img class="lunch-image" src="<%= lunch.url %>" alt="이미지" />
+              </a>
+              <% } else { %> <%= lunch.url %> <% } %>
+            </div>
+          </li>
+          <% } %>
+        </ul>
       <table>
         <colgroup>
           <col style="width: 240px" />
