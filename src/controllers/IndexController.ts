@@ -33,7 +33,7 @@ export class IndexController {
   async getLunch(@Param('id') id: number, @CurrentUser() user?: User) {
     const lunch = await this.lunchService.findById(id);
     if (lunch) {
-      const posts = await this.lunchService.getRestaurantPostsAtNaver(`역삼 ${lunch.placeName}`, 10);
+      const posts = await this.lunchService.getRestaurantPostsAtNaver(`역삼 ${lunch.placeName}`, 15);
       return {
         user,
         lunch,
