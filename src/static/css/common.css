@@ -157,7 +157,7 @@ strong {
   vertical-align: middle;
 }
 .lunch-thumbnail {
-  max-height: 240px;
+  max-height: 200px;
   overflow-y: auto;
 }
 .lunch-thumbnail::-webkit-scrollbar {
