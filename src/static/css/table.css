@@ -32,6 +32,13 @@ table tfoot tr td {
   border-top: 0;
   transition: all 0.3s ease;
 }
+table tbody tr td.text-center {
+  text-align: center;
+}
+table tbody tr td.custom {
+  padding-top: 35px;
+  vertical-align: top;
+}
 table thead > tr > th {
   font-weight: 400;
   color: #757575;

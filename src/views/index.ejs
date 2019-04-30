@@ -19,9 +19,9 @@
         </colgroup>
         <thead>
           <tr>
-            <th style="text-align: center">좋아요</th>
-            <th style="text-align: center">싫어요</th>
-            <th style="text-align: center">댓글</th>
+            <th class="text-center">좋아요</th>
+            <th class="text-center">싫어요</th>
+            <th class="text-center">댓글</th>
             <th>가게 이름</th>
             <th>추천 메뉴</th>
             <th>설명</th>
@@ -31,31 +31,31 @@
         <tbody>
           <% lunches.forEach(function(lunch) { %>
           <tr>
-            <td style="text-align: center">
+            <td class="text-center">
               <% if (lunch.id) { %>
               <button type="button" class="btn-like btn-like-dislike" data-lunch-id="<%=lunch.id%>">
                 <i>👍🏻</i> <span id="lunch-like-<%=lunch.id%>"><%= lunch.like %></span>
               </button>
               <% } %>
             </td>
-            <td style="text-align: center">
+            <td class="text-center">
               <% if (lunch.id) { %>
               <button type="button" class="btn-dislike btn-like-dislike" data-lunch-id="<%=lunch.id%>">
                 <i>👎🏻</i> <span id="lunch-dislike-<%=lunch.id%>"><%= lunch.dislike %></span>
               </button>
               <% } %>
             </td>
-            <td style="text-align: center">
+            <td class="text-center">
               <% if (lunch.id) { %>
               <button type="button" class="btn-comments" data-lunch-id="<%=lunch.id%>">
                 <img src="/img/comment.png" alt="comments" /> <span id="lunch-comment-<%=lunch.id%>"><%=lunch.comments.length%></span>
               </button>
               <% } %>
             </td>
-            <td><a href="/lunch/<%=lunch.id%>"><%= lunch.placeName %></a></td>
-            <td><%= lunch.recommend %></td>
-            <td><%= lunch.content %></td>
-            <td>
+            <td class="custom"><a href="/lunch/<%=lunch.id%>"><%= lunch.placeName %></a></td>
+            <td class="custom"><%= lunch.recommend %></td>
+            <td class="custom"><%= lunch.content %></td>
+            <td class="custom">
               <% if (lunch.urlType === 'link') { %>
               <a class="lunch-link" href="<%= lunch.url %>" target="_blank">링크</a>
               <% } else if (lunch.urlType === 'image') { %>
