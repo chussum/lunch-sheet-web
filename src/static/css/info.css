@@ -17,17 +17,19 @@
 
 .lunch-description li {
   display: table;
-  margin-bottom: 8px;
+  margin-bottom: 14px;
   color: #666;
 }
 
 .lunch-description li .title {
   width: 170px;
   display: table-cell;
+  vertical-align: top;
 }
 
 .lunch-description li .description {
   display: table-cell;
+  vertical-align: top;
 }
 
 .info {
