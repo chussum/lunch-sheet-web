@@ -75,6 +75,10 @@
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
+.comment-form .content-disabled {
+  cursor: default;
+  color: #888;
+}
 .comment-form .comment-btn-disabled {
   margin-left: -1px;
   width: 100px;
