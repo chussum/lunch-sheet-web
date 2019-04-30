@@ -59,9 +59,11 @@
               <% if (lunch.urlType === 'link') { %>
               <a class="lunch-link" href="<%= lunch.url %>" target="_blank">링크</a>
               <% } else if (lunch.urlType === 'image') { %>
-              <a class="lunch-link" href="<%= lunch.url %>" target="_blank">
-                <img class="lunch-image" src="<%= lunch.url %>" alt="이미지" />
-              </a>
+              <div class="lunch-thumbnail">
+                <a class="lunch-link" href="<%= lunch.url %>" target="_blank">
+                  <img class="lunch-image" src="<%= lunch.url %>" alt="이미지" />
+                </a>
+              </div>
               <% } else { %> <%= lunch.url %> <% } %>
             </td>
           </tr>

@@ -156,3 +156,7 @@ strong {
   width: 32px;
   vertical-align: middle;
 }
+.lunch-thumbnail {
+  max-height: 400px;
+  overflow-y: auto;
+}
