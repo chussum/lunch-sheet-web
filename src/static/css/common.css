@@ -157,6 +157,19 @@ strong {
   vertical-align: middle;
 }
 .lunch-thumbnail {
-  max-height: 400px;
+  max-height: 240px;
   overflow-y: auto;
+}
+.lunch-thumbnail::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+.lunch-thumbnail::-webkit-scrollbar-thumb {
+  background: #dadce0;
+  border: none;
+  box-shadow: none;
+  min-height: 40px;
+}
+.lunch-thumbnail .lunch-link {
+  display: block;
 }
