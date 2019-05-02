@@ -13,7 +13,7 @@ export class ErrorHandlerMiddleware implements ExpressErrorMiddlewareInterface {
   public error(error: HttpError, req: express.Request, res: express.Response, next: express.NextFunction): void {
     res.status(error.httpCode || 500);
     res.json({
-      sucess: false,
+      success: false,
       name: error.name,
       message: error.message,
       errors: error[`errors`] || []
