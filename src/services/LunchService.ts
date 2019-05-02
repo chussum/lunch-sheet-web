@@ -78,7 +78,7 @@ export class LunchService {
           if (results[0].length < 10) {
             return results[0];
           }
-          return results[0].concat(results[1])
+          return results[0].concat(results[1]);
         })
         .then(result => {
           if (!result || result.length === 0) {
