@@ -74,7 +74,12 @@ export class LunchService {
     return new Promise((resolve, reject) => {
       const requests = [this.searchRestaurantAtNaver(keyword, 1), this.searchRestaurantAtNaver(keyword, 11)];
       Promise.all(requests)
-        .then((results: any[]) => results[0].concat(results[1]))
+        .then((results: any[]) => {
+          if (results[0].length < 10) {
+            return results[0];
+          }
+          return results[0].concat(results[1])
+        })
         .then(result => {
           if (!result || result.length === 0) {
             this.log.info('naver search data error.');
